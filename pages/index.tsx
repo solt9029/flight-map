@@ -1,9 +1,4 @@
-import {
-  GoogleMap,
-  LoadScript,
-  Marker,
-  MarkerProps,
-} from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { DateTime } from 'luxon'
 import { useEffect, useRef, useState } from 'react'
 
@@ -33,6 +28,7 @@ const endingTime = DateTime.local(2021, 6, 5, 20, 0)
 
 const IndexPage = () => {
   const [markerPosition, setMarkerPosition] = useState(tokyo)
+  const [iconSize, setIconSize] = useState(undefined)
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,11 +52,31 @@ const IndexPage = () => {
   }, [setMarkerPosition, markerPosition])
 
   return (
-    <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={7.5}>
-        <Marker position={markerPosition}></Marker>
-      </GoogleMap>
-    </LoadScript>
+    <>
+      <LoadScript
+        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
+        onLoad={() => {
+          // NOTE: google is not defined before loaded
+          setIconSize(new window.google.maps.Size(50, 50))
+        }}
+      >
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={7.5}
+        >
+          {process.browser && (
+            <Marker
+              position={markerPosition}
+              icon={{
+                url: 'https://pics.prcm.jp/e7d9fd2d738f6/70445668/png/70445668.png',
+                scaledSize: iconSize,
+              }}
+            ></Marker>
+          )}
+        </GoogleMap>
+      </LoadScript>
+    </>
   )
 }
 
