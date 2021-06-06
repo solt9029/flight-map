@@ -69,7 +69,7 @@ const IndexPage = () => {
             <Marker
               position={markerPosition}
               icon={{
-                url: 'https://pics.prcm.jp/e7d9fd2d738f6/70445668/png/70445668.png',
+                url: 'https://hosting.photobucket.com/images/i/photo_solt/airplane.png',
                 scaledSize: iconSize,
               }}
             ></Marker>
