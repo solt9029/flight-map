@@ -23,8 +23,8 @@ const tokyo = {
 }
 
 // TODO: update these times after fixed
-const startingTime = DateTime.local(2021, 6, 5, 19, 0)
-const endingTime = DateTime.local(2021, 6, 5, 20, 0)
+const startingTime = DateTime.local(2022, 1, 2, 13, 0)
+const endingTime = DateTime.local(2022, 1, 2, 13, 5)
 
 const IndexPage = () => {
   const [markerPosition, setMarkerPosition] = useState(tokyo)
