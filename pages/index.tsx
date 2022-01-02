@@ -52,31 +52,25 @@ const IndexPage = () => {
   }, [setMarkerPosition, markerPosition])
 
   return (
-    <>
-      <LoadScript
-        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
-        onLoad={() => {
-          // NOTE: google is not defined before loaded
-          setIconSize(new window.google.maps.Size(50, 50))
-        }}
-      >
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={7.5}
-        >
-          {process.browser && (
-            <Marker
-              position={markerPosition}
-              icon={{
-                url: 'https://hosting.photobucket.com/images/i/photo_solt/airplane.png',
-                scaledSize: iconSize,
-              }}
-            ></Marker>
-          )}
-        </GoogleMap>
-      </LoadScript>
-    </>
+    <LoadScript
+      googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
+      onLoad={() => {
+        // NOTE: google is not defined before loaded
+        setIconSize(new window.google.maps.Size(50, 50))
+      }}
+    >
+      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={7.5}>
+        {process.browser && (
+          <Marker
+            position={markerPosition}
+            icon={{
+              url: 'https://hosting.photobucket.com/images/i/photo_solt/airplane.png',
+              scaledSize: iconSize,
+            }}
+          ></Marker>
+        )}
+      </GoogleMap>
+    </LoadScript>
   )
 }
 
