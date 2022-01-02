@@ -1,6 +1,6 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { DateTime } from 'luxon'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const containerStyle = {
   width: '100%',
