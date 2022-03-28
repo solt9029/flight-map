@@ -8,26 +8,26 @@ const containerStyle = {
 }
 
 const center = {
-  lat: 35.1815,
-  lng: 136.9066,
-} // 名古屋
-
-const tokushima = {
-  lat: 34.1345023,
-  lng: 134.6157278,
+  lat: 18.48,
+  lng: 121.85,
 }
 
-const tokyo = {
-  lat: 35.5493932,
-  lng: 139.7776499,
+const goal = {
+  lat: 1.338442,
+  lng: 103.983679,
+}
+
+const startingPoint = {
+  lat: 35.638195,
+  lng: 139.727959,
 }
 
 // TODO: update these times after fixed
-const startingTime = DateTime.local(2022, 1, 2, 13, 0)
-const endingTime = DateTime.local(2022, 1, 2, 13, 5)
+const startingTime = DateTime.local(2022, 4, 23, 15, 15)
+const endingTime = DateTime.local(2022, 4, 23, 17, 30)
 
 const IndexPage = () => {
-  const [markerPosition, setMarkerPosition] = useState(tokyo)
+  const [markerPosition, setMarkerPosition] = useState(startingPoint)
   const [iconSize, setIconSize] = useState(undefined)
 
   useEffect(() => {
@@ -45,8 +45,8 @@ const IndexPage = () => {
         (currentTime.toSeconds() - startingTime.toSeconds()) /
         (endingTime.toSeconds() - startingTime.toSeconds())
       setMarkerPosition({
-        lat: tokyo.lat + (tokushima.lat - tokyo.lat) * ratio,
-        lng: tokyo.lng + (tokushima.lng - tokyo.lng) * ratio,
+        lat: startingPoint.lat + (goal.lat - startingPoint.lat) * ratio,
+        lng: startingPoint.lng + (goal.lng - startingPoint.lng) * ratio,
       })
     }, 1000)
   }, [setMarkerPosition, markerPosition])
@@ -59,7 +59,7 @@ const IndexPage = () => {
         setIconSize(new window.google.maps.Size(50, 50))
       }}
     >
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={7.5}>
+      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={4.5}>
         {process.browser && (
           <Marker
             position={markerPosition}
